@@ -105,5 +105,5 @@ module case_lid()
 }
 
 cantact();
-//#case_bottom();
+#case_bottom();
 case_lid();

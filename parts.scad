@@ -1,21 +1,11 @@
 
 include <config.scad>;
-use <case-bottom.scad>;
-use <case-lid.scad>;
+use <part-bottom.scad>;
+use <part-lid.scad>;
 
-spacing = 5;
+spacing = 3;
 
-translate([
-    -case_offset_x,
-    -case_offset_y,
-    -case_offset_z
-    ])
-case_bottom();
+part_bottom();
 
-translate([
-    -case_offset_x,
-    case_y + spacing,
-    bottom_piece_height + case_offset_z + wall_thickness
-    ])
-mirror([0, 0, 1])
-case_lid();
+translate([0, case_y + spacing, 0])
+part_lid();
