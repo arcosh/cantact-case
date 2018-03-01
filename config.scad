@@ -9,7 +9,7 @@ pcb_x = 61;
 pcb_y = 36;
 pcb_thickness = 1;
 pcb_bottom_layer_parts_height = 3;
-pcb_top_layer_parts_height = 12;
+pcb_top_layer_parts_height = 12.5 + 1;
 
 pcb_hole1_x = 25.5;
 pcb_hole1_y = 4;
@@ -41,6 +41,17 @@ usb_cutout_z = 10.5 + 0.5;
 usb_cutout_offset_y = 3 - 0.25;
 usb_cutout_offset_z = 0 - 0.25;
 
+side_screw_support_x = 34;
+side_screw_support_size_x = 5.5;
+side_screw_support_size_y = 3.5;
+
+side_screw_terminal_x = side_screw_support_x;
+side_screw_terminal_z = 5;
+side_screw_terminal_diameter = 1.5;
+
+lid_border_inset = 1;
+lid_border_width = 1.5;
+
 /*
  * How much to increase x and y,
  * respectively width and length
@@ -53,14 +64,18 @@ expansion_z = 0;
 /*
  * Derivative case measures
  */
- // True dimensions of the case (bottom piece + lid)
- case_x = pcb_x + expansion_x + 2*wall_thickness;
- case_y = pcb_y + expansion_y + 2*wall_thickness;
- case_z = pcb_thickness + pcb_top_layer_parts_height + pcb_bottom_layer_parts_height + expansion_z + 2*wall_thickness;
+// True dimensions of the case (bottom piece + lid)
+case_x = pcb_x + expansion_x + 2*wall_thickness;
+case_y = pcb_y + expansion_y + 2*wall_thickness;
+case_z = pcb_thickness + pcb_top_layer_parts_height + pcb_bottom_layer_parts_height + expansion_z + 2*wall_thickness;
  
- // How much the origin of the case (i.e. bottom piece) model
- // is shifted compared to the PCB's origin
- case_offset_x = -expansion_x/2 - wall_thickness;
- case_offset_y = -expansion_y/2 - wall_thickness;
- case_offset_z = -wall_thickness - pcb_thickness - expansion_z/2 - pcb_bottom_layer_parts_height;
+// How much the origin of the case (i.e. bottom piece) model
+// is shifted compared to the PCB's origin
+case_offset_x = -expansion_x/2 - wall_thickness;
+case_offset_y = -expansion_y/2 - wall_thickness;
+case_offset_z = -wall_thickness - pcb_thickness - expansion_z/2 - pcb_bottom_layer_parts_height;
+
+bottom_piece_height = case_z; // - wall_thickness;
+
+side_screw_support_size_z = bottom_piece_height + case_offset_z;
  

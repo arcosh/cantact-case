@@ -15,7 +15,7 @@ module bottom_side_usb()
         cube([
             wall_thickness,
             case_y,
-            case_z
+            bottom_piece_height
             ]);
         
         // Cut a hole for the USB plug and cable

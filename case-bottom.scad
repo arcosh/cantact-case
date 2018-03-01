@@ -9,7 +9,7 @@ use <bottom-side-usb.scad>;
 /**
  * The case's bottom piece
  */
-module piece_bottom()
+module case_bottom()
 {
     // bottom plane
     translate([
@@ -60,7 +60,7 @@ module piece_bottom()
     bottom_side_usb();
 
     // Front side
-    #translate([
+    translate([
         case_offset_x,
         case_offset_y,
         case_offset_z
@@ -68,7 +68,7 @@ module piece_bottom()
     cube([
         case_x,
         wall_thickness,
-        case_z
+        bottom_piece_height
         ]);
 
     // Back side
@@ -80,9 +80,9 @@ module piece_bottom()
     cube([
         case_x,
         wall_thickness,
-        case_z
+        bottom_piece_height
         ]);
 }
 
 cantact();
-piece_bottom();
+case_bottom();

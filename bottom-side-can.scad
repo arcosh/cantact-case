@@ -14,7 +14,7 @@ module bottom_side_can()
         cube([
             wall_thickness,
             case_y,
-            case_z
+            bottom_piece_height
             ]);
         
         // Cut a hole for the D-Sub connector
