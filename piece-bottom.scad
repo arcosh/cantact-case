@@ -1,40 +1,24 @@
 
 include <config.scad>
 use <cantact/cantact.scad>;
+use <pcb-screw-terminal.scad>;
+use <pcb-support.scad>;
+use <bottom-side-can.scad>;
 
-module screw_terminal()
-{
-    /*
-     * Move slightly below zero to ensure
-     * physical connection to bottom plane
-     */
-    translate([0, 0, -nothing])
-    difference()
-    {
-        cylinder(
-            r = screw_terminal_outer_diameter/2,
-            h = pcb_bottom_layer_parts_height + expansion_z/2 + nothing
-            );
-        
-        // Make a hole for the screw
-        cylinder(
-            r = screw_terminal_inner_diameter/2,
-            h = pcb_bottom_layer_parts_height + expansion_z/2 + 2*nothing
-            );
-    }
-}
-
+/**
+ * The case's bottom piece
+ */
 module piece_bottom()
 {
     // bottom plane
     translate([
-        -expansion_x/2 - wall_thickness,
-        -expansion_y/2 - wall_thickness,
-        -wall_thickness - pcb_thickness - expansion_z/2 - pcb_bottom_layer_parts_height
+        case_offset_x,
+        case_offset_y,
+        case_offset_z
         ])
     cube([
-        pcb_x + expansion_x + 2*wall_thickness,
-        pcb_y + expansion_y + 2*wall_thickness,
+        case_x,
+        case_y,
         wall_thickness
         ]);
 
@@ -42,23 +26,60 @@ module piece_bottom()
     translate([
         pcb_hole1_x,
         pcb_hole1_y,
-        -pcb_bottom_layer_parts_height - pcb_thickness - nothing
+        -pcb_bottom_layer_parts_height - pcb_thickness
         ])
-    screw_terminal();
+    pcb_screw_terminal();
 
     translate([
         pcb_hole2_x,
         pcb_hole2_y,
-        -pcb_bottom_layer_parts_height - pcb_thickness - nothing
+        -pcb_bottom_layer_parts_height - pcb_thickness
         ])
-    screw_terminal();
-    
+    pcb_screw_terminal();
+
     // PCB supports
+    translate([
+        pcb_support1_x,
+        pcb_support1_y,
+        -pcb_bottom_layer_parts_height - pcb_thickness
+        ])
+    pcb_support();
+
+    translate([
+        pcb_support2_x,
+        pcb_support2_y,
+        -pcb_bottom_layer_parts_height - pcb_thickness
+        ])
+    pcb_support();
     
     // CAN connector side
-    
+    bottom_side_can();
+
     //  USB connector side
-    
+
+    // Front side
+    #translate([
+        case_offset_x,
+        case_offset_y,
+        case_offset_z
+        ])
+    cube([
+        case_x,
+        wall_thickness,
+        case_z
+        ]);
+
+    // Back side
+    translate([
+        case_offset_x,
+        case_offset_y  + case_y - wall_thickness,
+        case_offset_z
+        ])
+    cube([
+        case_x,
+        wall_thickness,
+        case_z
+        ]);
 }
 
 cantact();
