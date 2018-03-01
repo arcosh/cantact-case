@@ -6,12 +6,42 @@ use <pcb-support.scad>;
 use <bottom-side-can.scad>;
 use <bottom-side-usb.scad>;
 
+module side_plane()
+{
+    difference()
+    {
+        translate([
+            case_offset_x,
+            case_offset_y,
+            case_offset_z
+            ])
+        cube([
+            case_x,
+            wall_thickness,
+            bottom_piece_height
+            ]);
+
+        // Cut a hole for the screws
+        translate([
+            side_screw_terminal_x,
+            0,
+            side_screw_terminal_z
+            ])
+        rotate([90, 0, 0])
+        translate([0, 0, -nothing])
+        cylinder(
+            r = side_screw_terminal_diameter/2,
+            h = side_screw_support_size_y + 2*nothing
+            );
+    }
+}
+
 /**
  * The case's bottom piece
  */
 module case_bottom()
 {
-    // bottom plane
+    // Bottom plane
     translate([
         case_offset_x,
         case_offset_y,
@@ -60,28 +90,11 @@ module case_bottom()
     bottom_side_usb();
 
     // Front side
-    translate([
-        case_offset_x,
-        case_offset_y,
-        case_offset_z
-        ])
-    cube([
-        case_x,
-        wall_thickness,
-        bottom_piece_height
-        ]);
+    side_plane();
 
     // Back side
-    translate([
-        case_offset_x,
-        case_offset_y  + case_y - wall_thickness,
-        case_offset_z
-        ])
-    cube([
-        case_x,
-        wall_thickness,
-        bottom_piece_height
-        ]);
+    translate([0, case_y - wall_thickness, 0])
+    side_plane();
 }
 
 cantact();

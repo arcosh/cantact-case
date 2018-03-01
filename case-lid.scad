@@ -60,16 +60,31 @@ module lid_border()
 module case_lid()
 {
     // Top plane
-    translate([
-        case_offset_x,
-        case_offset_y,
-        case_offset_z + bottom_piece_height
-        ])
-    cube([
-        case_x,
-        case_y,
-        wall_thickness
-        ]);
+    difference()
+    {
+        translate([
+            case_offset_x,
+            case_offset_y,
+            case_offset_z + bottom_piece_height
+            ])
+        cube([
+            case_x,
+            case_y,
+            wall_thickness
+            ]);
+
+        // LED window
+        translate([
+            led_window_x,
+            led_window_y,
+            case_offset_z + bottom_piece_height - nothing
+            ])
+        cube([
+            led_window_size_x,
+            led_window_size_y,
+            wall_thickness + 2*nothing
+            ]);
+    }
 
     // Inset border plane
     translate([
@@ -90,5 +105,5 @@ module case_lid()
 }
 
 cantact();
-#case_bottom();
+//#case_bottom();
 case_lid();

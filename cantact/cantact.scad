@@ -3,6 +3,7 @@ include <../config.scad>;
 use <pcb.scad>;
 use <usb.scad>;
 use <dsub.scad>;
+use <led.scad>;
 
 module cantact()
 {
@@ -28,6 +29,15 @@ module cantact()
     translate([10.5, 3, 0])
     mirror()
     dsub9();
+
+    // LEDs
+    color("lightgreen")
+    translate([led1_x, led1_y, 0])
+    smd_led();
+
+    color("red")
+    translate([led2_x, led2_y, 0])
+    smd_led();
 }
 
 cantact();
