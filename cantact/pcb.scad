@@ -4,7 +4,7 @@ include <../config.scad>;
 color_pcb_material="yellow";
 color_pcb_soldermask="green";
 
-module pcb(x, y, z=pcb_z)
+module pcb(x, y, z=pcb_thickness)
 {
     soldermask_z = z/10;
 

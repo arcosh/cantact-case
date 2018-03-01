@@ -6,26 +6,17 @@ use <dsub.scad>;
 
 module cantact()
 {
-    cantact_x = 61;
-    cantact_y = 36;
-    
-    hole1_x = 25.5;
-    hole1_y = 4;
-    
-    hole2_x = 57.5;
-    hole2_y = 28;
-    
     difference()
     {
         // Generic PCB
-        pcb(cantact_x, cantact_y);
+        pcb(pcb_x, pcb_y);
 
         // First PCB hole
-        translate([hole1_x, hole1_y, 0])
+        translate([pcb_hole1_x, pcb_hole1_y, 0])
         cylinder(h=3, r=1.5, center=true);
 
         // Second PCB hole
-        translate([hole2_x, hole2_y, 0])
+        translate([pcb_hole2_x, pcb_hole2_y, 0])
         cylinder(h=3, r=1.5, center=true);
     }
 
