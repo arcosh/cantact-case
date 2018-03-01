@@ -4,6 +4,7 @@ use <cantact/cantact.scad>;
 use <pcb-screw-terminal.scad>;
 use <pcb-support.scad>;
 use <bottom-side-can.scad>;
+use <bottom-side-usb.scad>;
 
 /**
  * The case's bottom piece
@@ -56,6 +57,7 @@ module piece_bottom()
     bottom_side_can();
 
     //  USB connector side
+    bottom_side_usb();
 
     // Front side
     #translate([

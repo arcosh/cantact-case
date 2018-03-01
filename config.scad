@@ -36,6 +36,11 @@ dsub_cutout_z = 12.5 + 1;
 dsub_cutout_offset_y = 3 - 0.5;
 dsub_cutout_offset_z = -0.5;
 
+usb_cutout_y = 12 + 1; // + 0.5
+usb_cutout_z = 10.5 + 0.5;
+usb_cutout_offset_y = 3 - 0.25;
+usb_cutout_offset_z = 0 - 0.25;
+
 /*
  * How much to increase x and y,
  * respectively width and length
