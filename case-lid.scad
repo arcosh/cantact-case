@@ -10,7 +10,7 @@ module side_screw_support()
         translate([
             side_screw_support_x - side_screw_support_size_x/2,
             0,
-            nothing
+            case_offset_z + bottom_piece_height - side_screw_support_size_z
             ])
         cube([
             side_screw_support_size_x,

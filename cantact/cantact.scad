@@ -37,9 +37,9 @@ module cantact()
     import("cantact.stl");
 
     // USB connector
-    translate([45, 3.5, 0])
+    translate([45, 3.15, 0])
     usb_a();
-    
+
     // D-Sub connector
     translate([10.5, 3, 0])
     mirror()
