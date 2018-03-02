@@ -57,14 +57,14 @@ module case_bottom()
     translate([
         pcb_hole1_x,
         pcb_hole1_y,
-        -pcb_bottom_layer_parts_height - pcb_thickness
+        -pcb_thickness
         ])
     pcb_screw_terminal();
 
     translate([
         pcb_hole2_x,
         pcb_hole2_y,
-        -pcb_bottom_layer_parts_height - pcb_thickness
+        -pcb_thickness
         ])
     pcb_screw_terminal();
 
@@ -72,14 +72,14 @@ module case_bottom()
     translate([
         pcb_support1_x,
         pcb_support1_y,
-        -pcb_bottom_layer_parts_height - pcb_thickness
+        -pcb_thickness
         ])
     pcb_support();
 
     translate([
         pcb_support2_x,
         pcb_support2_y,
-        -pcb_bottom_layer_parts_height - pcb_thickness
+        -pcb_thickness
         ])
     pcb_support();
     

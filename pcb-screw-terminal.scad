@@ -10,7 +10,11 @@ module pcb_screw_terminal()
      * Move slightly below zero to ensure
      * physical connection to bottom plane
      */
-    translate([0, 0, -nothing])
+    translate([
+        0,
+        0,
+        -pcb_bottom_layer_parts_height - nothing
+        ])
     difference()
     {
         cylinder(

@@ -10,10 +10,14 @@ module pcb_support()
      * Move slightly below zero to ensure
      * physical connection to bottom plane
      */
-    translate([0, 0, -nothing])
+    translate([
+        0,
+        0,
+        -pcb_bottom_layer_parts_height - nothing
+        ])
     cylinder(
         r = pcb_support_diameter/2,
-        h = pcb_bottom_layer_parts_height + expansion_z/2 + 2*nothing
+        h = pcb_bottom_layer_parts_height + expansion_z/2 + nothing
         );
 }
 
