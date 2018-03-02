@@ -4,6 +4,7 @@ use <pcb.scad>;
 use <usb.scad>;
 use <dsub.scad>;
 use <led.scad>;
+use <qfp.scad>;
 
 module cantact_pcb()
 {
@@ -52,6 +53,10 @@ module cantact()
     color("red")
     translate([led2_x, led2_y, 0])
     smd_led();
+
+    // Microcontroller
+    translate([mcu_x, mcu_y, 0])
+    lqfp48();
 }
 
 cantact();

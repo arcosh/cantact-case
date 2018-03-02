@@ -11,6 +11,9 @@ pcb_thickness = 1;
 pcb_bottom_layer_parts_height = 3;
 pcb_top_layer_parts_height = 12.5 + 1;
 
+mcu_x = 31.5;
+mcu_y = 8.5;
+
 pcb_hole1_x = 25.5;
 pcb_hole1_y = 4;
 
