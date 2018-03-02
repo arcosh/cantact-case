@@ -5,7 +5,7 @@ use <usb.scad>;
 use <dsub.scad>;
 use <led.scad>;
 
-module cantact()
+module cantact_pcb()
 {
     difference()
     {
@@ -20,6 +20,20 @@ module cantact()
         translate([pcb_hole2_x, pcb_hole2_y, 0])
         cylinder(h=3, r=1.5, center=true);
     }
+}
+
+module cantact()
+{
+    //cantact_pcb();
+
+    color("green")
+    rotate([0, 0, 90])
+    translate([
+        -124.3,
+        90.8,
+        0
+        ])
+    import("cantact.stl");
 
     // USB connector
     translate([45, 3.5, 0])
