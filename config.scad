@@ -1,4 +1,5 @@
 
+// All measures are in millimeters.
 $fn = 200;
 nothing = 0.01;
 
@@ -91,9 +92,8 @@ case_offset_x = -expansion_x/2 - wall_thickness;
 case_offset_y = -expansion_y/2 - wall_thickness;
 case_offset_z = -wall_thickness - pcb_thickness - expansion_z/2 - pcb_bottom_layer_parts_height;
 
+// Bottom piece
 bottom_piece_height = case_z; // - wall_thickness;
 
+// Lid's side support screw holes
 side_screw_support_size_z = bottom_piece_height + case_offset_z - 0.3;
-
-led_window_x = (led1_x + led2_x)/2 - led_window_size_x/2;
-led_window_y = led1_y - led_window_size_y/2;

@@ -35,8 +35,13 @@ module side_screw_support()
 
 module lid_border()
 {
+    // Derivative measures
+    lid_border_inside_size_x = pcb_x + expansion_x - 2*lid_border_width;
+    lid_border_inside_size_y = pcb_y + expansion_y - 2*lid_border_width;
+
     difference()
     {
+        // A cube with approximately the size of the CANtact PCB
         cube([
             pcb_x + expansion_x,
             pcb_y + expansion_y,
@@ -51,8 +56,8 @@ module lid_border()
             -nothing
             ])
         cube([
-            pcb_x + expansion_x - 2*lid_border_width,
-            pcb_y + expansion_y - 2*lid_border_width,
+            lid_border_inside_size_x,
+            lid_border_inside_size_y,
             lid_border_height + 2*nothing
             ]);
     }
@@ -60,21 +65,36 @@ module lid_border()
 
 module case_lid()
 {
-    // Top plane
+    // Derivative measure: LED window coordinates
+    led_window_x = (led1_x + led2_x)/2 - led_window_size_x/2;
+    led_window_y = led1_y - led_window_size_y/2;
+
     difference()
     {
-        translate([
-            case_offset_x,
-            case_offset_y,
-            case_offset_z + bottom_piece_height
-            ])
-        cube([
-            case_x,
-            case_y,
-            wall_thickness
-            ]);
+        union()
+        {
+            // Lid's top plane
+            translate([
+                case_offset_x,
+                case_offset_y,
+                case_offset_z + bottom_piece_height
+                ])
+            cube([
+                case_x,
+                case_y,
+                wall_thickness
+                ]);
 
-        // LED window
+            // Add lid border
+            translate([
+                case_offset_x + wall_thickness,
+                case_offset_y + wall_thickness,
+                case_offset_z + bottom_piece_height - lid_border_height
+                ])
+            lid_border();
+        }
+
+        // Cut out LED window
         translate([
             led_window_x,
             led_window_y,
@@ -86,14 +106,6 @@ module case_lid()
             wall_thickness + 2*nothing
             ]);
     }
-
-    // Inset border plane
-    translate([
-        case_offset_x + wall_thickness,
-        case_offset_y + wall_thickness,
-        case_offset_z + bottom_piece_height - lid_border_height
-        ])
-    lid_border();
 
     // Front plane support
     translate([0, -expansion_y/2, 0])
