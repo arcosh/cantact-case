@@ -40,7 +40,8 @@ module lid_border()
         cube([
             pcb_x + expansion_x,
             pcb_y + expansion_y,
-            wall_thickness
+            lid_border_height
+            + nothing       // ensure object unification with lid's top plane
             ]);
 
         // Remove the inside of the above cube to leave only the border
@@ -52,7 +53,7 @@ module lid_border()
         cube([
             pcb_x + expansion_x - 2*lid_border_width,
             pcb_y + expansion_y - 2*lid_border_width,
-            wall_thickness + 2*nothing
+            lid_border_height + 2*nothing
             ]);
     }
 }
@@ -90,7 +91,7 @@ module case_lid()
     translate([
         case_offset_x + wall_thickness,
         case_offset_y + wall_thickness,
-        case_offset_z + bottom_piece_height - lid_border_inset
+        case_offset_z + bottom_piece_height - lid_border_height
         ])
     lid_border();
 
