@@ -65,6 +65,8 @@ side_screw_terminal_diameter = 1.5 + 0.5;
 
 lid_border_width = 1.5;
 lid_border_height = 1;
+lid_border_inset_x = 0.2;
+lid_border_inset_y = 0.2;
 
 led_window_size_x = 6;
 led_window_size_y = 2.5;

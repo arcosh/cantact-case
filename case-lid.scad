@@ -36,15 +36,17 @@ module side_screw_support()
 module lid_border()
 {
     // Derivative measures
-    lid_border_inside_size_x = pcb_x + expansion_x - 2*lid_border_width;
-    lid_border_inside_size_y = pcb_y + expansion_y - 2*lid_border_width;
+    lid_border_outside_size_x = pcb_x + expansion_x - 2*lid_border_inset_x;
+    lid_border_outside_size_y = pcb_y + expansion_y - 2*lid_border_inset_y;
+    lid_border_inside_size_x = pcb_x + expansion_x - 2*lid_border_width - 2*lid_border_inset_x;
+    lid_border_inside_size_y = pcb_y + expansion_y - 2*lid_border_width - 2*lid_border_inset_y;
 
     difference()
     {
         // A cube with approximately the size of the CANtact PCB
         cube([
-            pcb_x + expansion_x,
-            pcb_y + expansion_y,
+            lid_border_outside_size_x,
+            lid_border_outside_size_y,
             lid_border_height
             + nothing       // ensure object unification with lid's top plane
             ]);
@@ -87,8 +89,8 @@ module case_lid()
 
             // Add lid border
             translate([
-                case_offset_x + wall_thickness,
-                case_offset_y + wall_thickness,
+                case_offset_x + wall_thickness + lid_border_inset_x,
+                case_offset_y + wall_thickness + lid_border_inset_y,
                 case_offset_z + bottom_piece_height - lid_border_height
                 ])
             lid_border();
