@@ -35,8 +35,8 @@ led_size_z = 0.5;
  * Case properties
  */
 wall_thickness = 2;
-pcb_screw_terminal_outer_diameter = 4.5;
-pcb_screw_terminal_inner_diameter = 1.5 + 0.5;
+pcb_screw_terminal_outer_diameter = 6;
+pcb_screw_terminal_inner_diameter = 2.7;
 pcb_support_diameter = 3;
 
 pcb_support1_x = 15.5;
@@ -61,7 +61,7 @@ side_screw_support_size_y = 3.5;
 
 side_screw_terminal_x = side_screw_support_x;
 side_screw_terminal_z = 5;
-side_screw_terminal_diameter = 1.5 + 0.5;
+side_screw_terminal_diameter = 2.7;
 
 lid_border_width = 1.5;
 lid_border_height = 1;
